@@ -73,7 +73,7 @@ export default function FridgeScanner() {
     formData.append('file', file);
 
     try {
-      const response = await fetch('http://localhost:8000/api/v1/scan-fridge', {
+      const response = await fetch('https://cookify-qo0u.onrender.com/api/v1/scan-fridge', {
         method: 'POST',
         body: formData,
       });
@@ -114,7 +114,7 @@ export default function FridgeScanner() {
     setError(null);
 
     try {
-      const response = await fetch('http://localhost:8000/api/v1/generate-recipe', {
+      const response = await fetch('https://cookify-qo0u.onrender.com/api/v1/generate-recipe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(scanResult.ingredients),
