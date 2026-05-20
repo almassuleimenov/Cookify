@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  cookify-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cookify_core_api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      # Указываем Uvicorn работать в production режиме
+      - WORKERS_PER_CORE=1
+    healthcheck:
+      # Проверка живости приложения внутри сети Docker
+      test: ["CMD", "curl", "-f", "http://localhost:8000/docs"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
